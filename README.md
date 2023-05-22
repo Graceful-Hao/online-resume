@@ -11,4 +11,5 @@ parcel src/index.html
 
 ```
 parcel build src/index.html --public-url .
+git subtree push --prefix dist origin gh-pages
 ```
