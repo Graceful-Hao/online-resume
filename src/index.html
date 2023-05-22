@@ -361,7 +361,7 @@
               >
             </header>
             <br />
-            <p>复刻一些数组、对象的api功能</p>
+            <p>对一些数组，对象等api使用函数对其功能进行复刻</p>
             <p>
               <strong>bind、call、apply函数式实现</strong>
             </p>
@@ -370,7 +370,7 @@
               <strong>数组常用api</strong>
               ，去重（unique）、降维（flatten）、every、some、find、filter、等
             </p>
-            <p><strong>Promise</strong>的实现以及then方法的手写实现</p>
+            <p><strong>Promise.all</strong>的手写实现</p>
             <p>
               <strong>对象常用api</strong>
               ，深拷贝（deepClone）、合并两个对象（mergeObject）、判断两个对象值是否相等（isEqual）、以及Instanceof等函数实现
@@ -392,23 +392,63 @@
               总公司下的代账公司内部使用的项目，主要用于展示客户信息，批量报税
             </p>
             <h4>技术栈：</h4>
-            <p>Vue3全家桶 + Element-ui + axios</p>
+            <p>Vue3 + Vue-router + Vuex + Element-ui + axios</p>
             <h4>职责内容：</h4>
             <p>
-              登录鉴权动态生成路由，使用axios请求路由表数据，对数据进行递归生成路由表，封装路由表组件懒加载生成函数，使用addRouters方法封装递归生成路由函数
+              客户信息模块：<br />
+              &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp ①客户信息的修改、保存、备注等<br />
+              &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp ②客户营业执照可识别、上传、下载<br />
+              &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp ③Excel支持导入、导出
             </p>
             <p>
-              统一处理用户权限，使用树形控件进行角色权限的控制。封装自定义指令v-permission进行按钮权限校验
+              批量报税模块：<br />
+              &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+              ①支持自动生成纳税申报表，生成异常有相关提示<br />
+              &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+              ②支持手动编辑申报表、批量申报，失败显示校验提示。
             </p>
             <p>
-              使用Vuex管理公共数据，对Vuex进行模块化封装，使用
-              vuex-persistedstate 插件解决刷新丢失
+              系统管理模块：<br />
+              &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+              ①系统内所有菜单、按钮等操作权限管理<br />
+              &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+              ②人员关联数据权限，岗位与组织绑定，每个省区下都会有不同岗位区分数据权限<br />
+              &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp ③角色关联操作权限
             </p>
-            <p>使用keep-alive内置组件对需要缓存的路由进行按需缓存</p>
             <p>
-              对axios进行封装，在请求拦截中对需要token的接口添加token，处理请求错误信息，添加全局loading等，添加响应拦截使用switch处理常见状态码的响应错误
+              统计分析模块：<br />
+              &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp ①报税完成户数统计-饼图<br />
+              &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+              ②接口调用失败率统计-条形图，按税种统计<br />
+              &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp ③客户续费率统计-折线图，每季度统计
             </p>
-            <p>使用element-ui中组件对请求到的数据进行渲染，分页展示</p>
+            <h4>技术实现：</h4>
+
+            <p>
+              1、对upload组件进行二次封装，通过限制上传文件大小、格式、宽高等属性，并处理上传失败逻辑，使得上传文件的过程更加安全和高效。
+            </p>
+            <p>
+              2、封装自定义指令v-permissions，通过addRouter动态生成路由表，实现前端操作权限控制，方便管理系统中不同角色的权限。
+            </p>
+            <p>
+              3、使用tree组件的二次封装，添加右键菜单，可直接对树组件做修改删除等操作，并实现前端操作权限控制。同时，还可以通过动态添加子节点和修改父节点等操作，实现更加灵活的树控制。
+            </p>
+            <p>
+              4、封装excel导入与导出相关组件，方便用户快速将数据导出为Excel文件。
+            </p>
+            <p>
+              5、使用form组件动态生成校验规则，通过v-model指今实现数据绑定，并用正则表达式等方法对用户输入进行验证，保证数据的有效性。
+            </p>
+            <p>
+              6、使用math.is库处理数字相关问题，提供了各种数学函数和方法，可以方便地进行数学计算和处理。
+            </p>
+            <p>
+              7、报税凭证pdf预览查看组件，可以将报税凭证转换为PDF格式，并提供预览功能，方便用户查看和处理。
+            </p>
+            <p>
+              8、使用math.is库处理数字相关问题，提供了各种数学函数和方法，可以方便地进行数学计算和处理。
+            </p>
+            <p>9、封装 echarts 组件，提供多图表自适应窗口大小。</p>
           </li>
           <li>
             <header>
@@ -418,18 +458,21 @@
             <h4>项目介绍：</h4>
             <p>一款基于 Vue 3 并使用 Vite 构建的移动端记账应用。</p>
             <h4>技术栈：</h4>
-            <p>Vue全家桶 + Element-ui + axios + Pinia</p>
-            <h4>职责内容：</h4>
-            <p>使用 Vue Router 通过路由守卫实现鉴权，引导用户登录。</p>
+            <p>Vue3 + Vue-router + axios + Pinia</p>
+
+            <h4>技术实现</h4>
             <p>
-              使用 Pinia
-              实现状态管理，记录当前用户的登录状态、选择偏好和明细列表等数据，进而熟悉了Pinia的ID、持久化等知识。
+              1、手动封装 icon、layout、tab、iconList 等组件，减少重复代码。
+            </p>
+            <p>2、根据设计图手动封装键盘组件，解决原生键盘问题。</p>
+            <p>
+              3、使用pinia的封装与持久化配置，可以方便地管理系统中的各种配置信息，并提供了良好的备份和还原功能，保证系统的可靠性和稳定性。
             </p>
             <p>
-              使用
-              ECharts实现数据可视化，包含条形图、折线图、饼图等，对请求返回的数据进行构造，修改相应配置项，提高用户体验
+              4、使用
+              ECharts实现数据可视化，包含条形图、折线图、饼图等，对请求返回的数据进行构造，修改相应配置项，提高用户体验。
             </p>
-            <p>手动封装layout、icon、nav等组件，减少重复代码。</p>
+            <p></p>
           </li>
         </ol>
       </section>
@@ -449,7 +492,6 @@
             <h4 style="font-weight: bold; margin-bottom: 15px">岗位职责：</h4>
             <ul>
               <li>维护报税系统，确保系统稳定运行</li>
-              <li>与公司会计人员沟通，了解他们的需求，辅助完成需求定制</li>
               <li>参与开发新的功能需求，按时交付高质量代码</li>
             </ul>
           </li>
